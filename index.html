@@ -4,237 +4,749 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AETHERIX ESPORTS</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&family=Permanent+Marker&family=Patrick+Hand&display=swap" rel="stylesheet">
 <style>
-:root{--green:#39FF14;--green-glow:rgba(57,255,20,0.3);--orange:#FF6B00;--orange-glow:rgba(255,107,0,0.35);--bg:#080c0a;--bg2:#0d1410;--bg3:#0f1a12;--text:#c8f0c0;--text-dim:#5a7a52;--white:#e8f5e0;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;cursor:none;}
-.cursor{width:16px;height:16px;border:2px solid var(--green);position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);transition:transform .1s;}
-.cursor-dot{width:4px;height:4px;background:var(--orange);position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);border-radius:50%;}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(57,255,20,.014) 2px,rgba(57,255,20,.014) 4px);pointer-events:none;z-index:1000;}
+/* ═══════════════════════════════
+   ANIME / PAPER THEME
+═══════════════════════════════ */
+:root {
+  --ink: #1a1a2e;
+  --ink2: #16213e;
+  --paper: #faf6f0;
+  --paper2: #f0ebe0;
+  --paper3: #e8e0d0;
+  --red: #e63946;
+  --red-light: rgba(230,57,70,0.15);
+  --blue: #457b9d;
+  --blue-light: rgba(69,123,157,0.15);
+  --yellow: #f4a261;
+  --yellow-light: rgba(244,162,97,0.15);
+  --green: #2d6a4f;
+  --green-light: rgba(45,106,79,0.15);
+  --purple: #7b2d8b;
+  --shadow: rgba(26,26,46,0.15);
+  --border: #1a1a2e;
+}
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:500;padding:0 40px;height:64px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(8,12,10,.97),rgba(8,12,10,.65));border-bottom:1px solid rgba(57,255,20,.15);backdrop-filter:blur(12px);}
-.nav-logo{display:flex;align-items:center;text-decoration:none;}
-.logo-bracket{position:relative;padding:4px 12px;}
-.logo-bracket::before,.logo-bracket::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--orange);border-style:solid;}
-.logo-bracket::before{top:0;left:0;border-width:2px 0 0 2px;}
-.logo-bracket::after{bottom:0;right:0;border-width:0 2px 2px 0;}
-.logo-text{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;letter-spacing:3px;color:var(--white);text-shadow:0 0 20px var(--green-glow);}
-.logo-text span{color:var(--green);}
-.nav-links{display:flex;gap:8px;list-style:none;}
-.nav-links a{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text-dim);text-decoration:none;padding:6px 14px;position:relative;transition:color .2s;}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--green);transform:translateX(-50%);transition:width .25s;box-shadow:0 0 8px var(--green);}
-.nav-links a:hover{color:var(--green);}
-.nav-links a:hover::after{width:80%;}
-.nav-cta{background:transparent!important;border:1px solid var(--orange)!important;color:var(--orange)!important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
-.nav-cta:hover{background:var(--orange-glow)!important;color:var(--white)!important;}
-.nav-cta::after{display:none!important;}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.hamburger span{display:block;width:24px;height:2px;background:var(--green);transition:all .3s;}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 
-/* SECTION */
-section{position:relative;padding:100px 80px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.section-label{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--orange);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px;}
-.section-label::before{content:'';display:block;width:30px;height:1px;background:var(--orange);}
-.section-title{font-family:'Orbitron',sans-serif;font-size:clamp(32px,4vw,56px);font-weight:900;color:var(--white);letter-spacing:2px;margin-bottom:16px;}
-.section-title .accent{color:var(--green);}
-.section-divider{width:100%;max-width:600px;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent);margin:32px auto;opacity:.4;}
-.btn-primary{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;padding:14px 40px;background:var(--green);color:#080c0a;border:none;cursor:pointer;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;}
-.btn-primary:hover{background:#fff;box-shadow:0 0 30px var(--green-glow);}
-.btn-secondary{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;padding:14px 40px;background:transparent;color:var(--orange);border:1px solid var(--orange);cursor:pointer;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;}
-.btn-secondary:hover{background:var(--orange-glow);box-shadow:0 0 30px var(--orange-glow);}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='5' fill='%23e63946' stroke='%231a1a2e' stroke-width='2'/%3E%3C/svg%3E") 12 12, auto;
+}
 
-/* HERO */
-#home{overflow:hidden;padding-top:64px;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 20% 50%,rgba(57,255,20,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 80% 50%,rgba(255,107,0,.05) 0%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,var(--bg3) 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,.06) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite;}
-@keyframes gridMove{from{background-position:0 0}to{background-position:60px 60px}}
-.hero-scan-l,.hero-scan-r{position:absolute;top:0;bottom:0;width:3px;overflow:hidden;}
-.hero-scan-l{left:40px;}.hero-scan-r{right:40px;}
-.hero-scan-l::after,.hero-scan-r::after{content:'';position:absolute;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--orange),transparent);animation:scanDown 4s ease-in-out infinite;}
-.hero-scan-r::after{animation-delay:2s;}
-@keyframes scanDown{0%{top:-120px}100%{top:100%}}
-.hero-hud-t,.hero-hud-b{position:absolute;inset:80px 80px 40px;pointer-events:none;}
-.hero-hud-t::before,.hero-hud-t::after,.hero-hud-b::before,.hero-hud-b::after{content:'';position:absolute;border-color:var(--orange);border-style:solid;opacity:.5;}
-.hero-hud-t::before{top:0;left:0;width:50px;height:50px;border-width:2px 0 0 2px;}
-.hero-hud-t::after{top:0;right:0;width:50px;height:50px;border-width:2px 2px 0 0;}
-.hero-hud-b::before{bottom:0;left:0;width:50px;height:50px;border-width:0 0 2px 2px;}
-.hero-hud-b::after{bottom:0;right:0;width:50px;height:50px;border-width:0 2px 2px 0;}
-.tick{position:absolute;background:var(--orange);opacity:.6;}
-.tl{top:80px;left:160px;width:60px;height:2px;}.tr{top:80px;right:160px;width:60px;height:2px;}
-.bl{bottom:40px;left:160px;width:60px;height:2px;}.br{bottom:40px;right:160px;width:60px;height:2px;}
-.hero-logo-mark{position:absolute;right:-80px;top:50%;transform:translateY(-50%);font-family:'Orbitron',sans-serif;font-size:320px;font-weight:900;color:rgba(57,255,20,.03);letter-spacing:-20px;pointer-events:none;user-select:none;z-index:1;animation:glitch 8s infinite;}
-@keyframes glitch{0%,94%,100%{transform:translateY(-50%) skewX(0);opacity:1}95%{transform:translateY(-50%) skewX(-5deg);opacity:.7;clip-path:inset(20% 0 40% 0)}97%{transform:translateY(-50%) skewX(3deg);opacity:.9;clip-path:inset(60% 0 10% 0)}}
-.hero-content{position:relative;z-index:2;text-align:center;padding:40px;max-width:900px;}
-.hero-tag{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--orange);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px;}
-.hero-tag::before,.hero-tag::after{content:'';display:block;width:40px;height:1px;background:var(--orange);}
-.hero-title{font-family:'Orbitron',sans-serif;font-size:clamp(52px,8vw,110px);font-weight:900;line-height:.9;letter-spacing:-2px;color:var(--white);text-shadow:0 0 60px var(--green-glow),0 0 120px rgba(57,255,20,.1);animation:titlePulse 4s ease-in-out infinite;margin-bottom:12px;}
-.hero-title .green{color:var(--green);text-shadow:0 0 40px var(--green),0 0 80px var(--green-glow);}
-@keyframes titlePulse{0%,100%{text-shadow:0 0 60px var(--green-glow),0 0 120px rgba(57,255,20,.1)}50%{text-shadow:0 0 80px var(--green-glow),0 0 160px rgba(57,255,20,.2)}}
-.hero-sub{font-family:'Orbitron',sans-serif;font-size:clamp(12px,2vw,18px);font-weight:400;letter-spacing:8px;color:var(--text-dim);margin-bottom:50px;}
-.hero-buttons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+/* Paper texture */
+body::before {
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(26,26,46,0.04) 28px, rgba(26,26,46,0.04) 29px),
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(26,26,46,0.02) 28px, rgba(26,26,46,0.02) 29px);
+  pointer-events:none;z-index:0;
+}
 
-/* ═══ LOGIN ═══ */
-#login{background:var(--bg2);}
+/* Halftone dots overlay */
+body::after {
+  content:'';
+  position:fixed;inset:0;
+  background-image: radial-gradient(circle, rgba(26,26,46,0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events:none;z-index:0;
+}
+
+/* ═══ MANGA BORDER UTILITY ═══ */
+.manga-border {
+  border: 3px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  position: relative;
+}
+.manga-border-red {
+  border: 3px solid var(--red);
+  box-shadow: 5px 5px 0 var(--red);
+}
+.manga-border-blue {
+  border: 3px solid var(--blue);
+  box-shadow: 5px 5px 0 var(--blue);
+}
+
+/* ═══ NAVBAR ═══ */
+nav {
+  position:fixed;top:0;width:100%;z-index:500;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  background: var(--paper2);
+  border-bottom: 3px solid var(--ink);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.logo-box {
+  background: var(--ink);
+  padding: 4px 14px 6px;
+  transform: rotate(-1deg);
+  position:relative;
+}
+.logo-box::after {
+  content:'';
+  position:absolute;inset:0;
+  border: 2px dashed rgba(255,255,255,0.3);
+  margin: 3px;
+}
+.logo-text {
+  font-family: 'Bangers', cursive;
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: white;
+  text-shadow: 2px 2px 0 var(--red);
+}
+.logo-text span { color: var(--yellow); text-shadow: 2px 2px 0 #c45e00; }
+
+.nav-links { display:flex; gap:4px; list-style:none; }
+.nav-links a {
+  font-family: 'Bangers', cursive;
+  font-size: 15px; letter-spacing: 2px;
+  color: var(--ink); text-decoration:none;
+  padding: 6px 16px;
+  border: 2px solid transparent;
+  transition: all .15s;
+  position:relative;
+}
+.nav-links a:hover {
+  background: var(--ink);
+  color: white;
+  transform: translateY(-2px) rotate(-0.5deg);
+}
+.nav-cta-link {
+  background: var(--red) !important;
+  color: white !important;
+  border: 2px solid var(--ink) !important;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.nav-cta-link:hover {
+  transform: translate(-1px,-3px) rotate(-0.5deg) !important;
+  box-shadow: 4px 4px 0 var(--ink) !important;
+}
+.hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+.hamburger span { display:block; width:24px; height:3px; background:var(--ink); border-radius:2px; transition:all .3s; }
+
+/* ═══ HERO ═══ */
+#home {
+  min-height: 100vh;
+  padding-top: 68px;
+  position: relative;
+  display: flex; align-items:center; justify-content:center;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* Speed lines background */
+.hero-lines {
+  position:absolute;inset:0;
+  background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 5deg, rgba(26,26,46,0.015) 5deg, rgba(26,26,46,0.015) 6deg);
+  pointer-events:none;
+}
+
+/* Manga panel shapes */
+.hero-panel {
+  position:absolute;
+  background: var(--paper2);
+  border: 3px solid var(--ink);
+  transform-origin: center;
+}
+.hp1 { width:220px; height:220px; top:-40px; left:-40px; transform:rotate(12deg); background:rgba(230,57,70,0.08); }
+.hp2 { width:160px; height:180px; bottom:-20px; right:-30px; transform:rotate(-8deg); background:rgba(69,123,157,0.1); }
+.hp3 { width:100px; height:100px; top:120px; right:15%; transform:rotate(15deg); background:rgba(244,162,97,0.12); }
+.hp4 { width:80px; height:80px; bottom:15%; left:8%; transform:rotate(-10deg); background:rgba(45,106,79,0.1); }
+
+/* Onomatopoeia */
+.sfx {
+  position:absolute;
+  font-family:'Bangers',cursive;
+  color:var(--ink);
+  pointer-events:none;
+  user-select:none;
+  opacity:0.07;
+}
+.sfx1 { font-size:160px; top:10%; left:2%; transform:rotate(-15deg); }
+.sfx2 { font-size:100px; bottom:10%; right:5%; transform:rotate(10deg); color:var(--red); opacity:.05; }
+
+.hero-content {
+  position:relative;z-index:2;
+  text-align:center;
+  padding:60px 40px;
+  max-width:800px;
+}
+
+.hero-badge {
+  display:inline-block;
+  background: var(--red);
+  color: white;
+  font-family:'Bangers',cursive;
+  font-size:13px;letter-spacing:3px;
+  padding:4px 20px;
+  border:2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform:rotate(-1deg);
+  margin-bottom:28px;
+}
+
+.hero-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(64px,10vw,130px);
+  letter-spacing: 4px;
+  line-height: 0.9;
+  color: var(--ink);
+  text-shadow: 6px 6px 0 var(--red), 10px 10px 0 rgba(230,57,70,0.2);
+  margin-bottom: 8px;
+  animation: titleBounce 3s ease-in-out infinite;
+}
+.hero-title .colored { color: var(--red); text-shadow: 4px 4px 0 var(--ink); }
+@keyframes titleBounce {
+  0%,100%{transform:translateY(0) rotate(-0.5deg)}
+  50%{transform:translateY(-6px) rotate(0.5deg)}
+}
+
+.hero-sub {
+  font-family:'Permanent Marker',cursive;
+  font-size:clamp(14px,2.5vw,22px);
+  color:var(--blue);
+  letter-spacing:3px;
+  margin-bottom:40px;
+  transform:rotate(1deg);
+  display:block;
+}
+
+.hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* ═══ BTN STYLES ═══ */
+.btn-main {
+  font-family:'Bangers',cursive;
+  font-size:16px;letter-spacing:3px;
+  padding:12px 36px;
+  background:var(--ink);color:white;
+  border:3px solid var(--ink);
+  box-shadow:5px 5px 0 var(--red);
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;
+  transition:all .15s;
+  transform:rotate(-0.5deg);
+}
+.btn-main:hover { transform:translate(-2px,-2px) rotate(-1deg); box-shadow:7px 7px 0 var(--red); }
+
+.btn-alt {
+  font-family:'Bangers',cursive;
+  font-size:16px;letter-spacing:3px;
+  padding:12px 36px;
+  background:white;color:var(--red);
+  border:3px solid var(--red);
+  box-shadow:5px 5px 0 var(--ink);
+  cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;
+  transition:all .15s;
+  transform:rotate(0.5deg);
+}
+.btn-alt:hover { transform:translate(-2px,-2px) rotate(1deg); box-shadow:7px 7px 0 var(--ink); }
+
+/* ═══ SECTION BASE ═══ */
+section {
+  position:relative;z-index:1;
+  padding:100px 80px;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+
+.sec-tag {
+  font-family:'Permanent Marker',cursive;
+  font-size:13px;color:var(--blue);
+  letter-spacing:2px;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-tag::before,.sec-tag::after { content:''; display:block; width:24px; height:3px; background:var(--blue); border-radius:2px; }
+
+.sec-title {
+  font-family:'Bangers',cursive;
+  font-size:clamp(40px,5vw,72px);
+  letter-spacing:3px;color:var(--ink);
+  text-shadow:3px 3px 0 rgba(26,26,46,0.15);
+  margin-bottom:12px;
+}
+.sec-title .red { color:var(--red); }
+.sec-title .blue { color:var(--blue); }
+
+.manga-divider {
+  width:100%;max-width:500px;
+  height:4px;
+  background:repeating-linear-gradient(90deg,var(--ink),var(--ink) 12px,transparent 12px,transparent 16px);
+  margin:24px auto;
+  border-radius:2px;
+}
+
+/* ═══ LOGIN SECTION ═══ */
+#login { background:var(--paper2); }
 
 /* Step bar */
-.login-steps{display:flex;align-items:flex-start;margin-bottom:32px;width:100%;max-width:560px;}
-.step-node{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative;}
-.step-node:not(:last-child)::after{content:'';position:absolute;top:16px;left:50%;width:100%;height:2px;background:rgba(57,255,20,.15);z-index:0;transition:background .4s;}
-.step-node.done:not(:last-child)::after{background:rgba(57,255,20,.5);}
-.step-circle{width:32px;height:32px;border:2px solid rgba(57,255,20,.25);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:var(--text-dim);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);transition:all .3s;background:var(--bg2);position:relative;z-index:1;}
-.step-node.active .step-circle{border-color:var(--green);color:var(--green);box-shadow:0 0 14px var(--green-glow);background:rgba(57,255,20,.08);}
-.step-node.done .step-circle{background:var(--green);border-color:var(--green);color:#080c0a;}
-.step-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--text-dim);text-transform:uppercase;white-space:nowrap;}
-.step-node.active .step-label{color:var(--green);}
-.step-node.done .step-label{color:rgba(57,255,20,.6);}
+.login-steps {
+  display:flex;align-items:flex-start;
+  margin-bottom:28px;
+  width:100%;max-width:560px;
+  gap:0;
+}
+.step-node { display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;position:relative; }
+.step-node:not(:last-child)::after {
+  content:'';position:absolute;top:18px;left:50%;width:100%;height:3px;
+  background:repeating-linear-gradient(90deg,var(--ink),var(--ink) 6px,transparent 6px,transparent 10px);
+  z-index:0;
+}
+.step-node.done:not(:last-child)::after { background:var(--green); }
+.step-circle {
+  width:36px;height:36px;
+  border:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bangers',cursive;font-size:14px;
+  color:var(--ink);
+  background:white;
+  position:relative;z-index:1;
+  box-shadow:3px 3px 0 var(--ink);
+  transition:all .3s;
+}
+.step-node.active .step-circle { background:var(--red);color:white;box-shadow:3px 3px 0 var(--ink); }
+.step-node.done .step-circle { background:var(--green);color:white;box-shadow:3px 3px 0 var(--ink); }
+.step-label { font-family:'Patrick Hand',cursive;font-size:10px;letter-spacing:1px;color:var(--ink);text-transform:uppercase;white-space:nowrap; }
+.step-node.active .step-label { color:var(--red);font-weight:800; }
+.step-node.done .step-label { color:var(--green); }
 
-/* Card */
-.login-card{position:relative;width:100%;max-width:560px;padding:40px 48px;background:rgba(13,20,16,.88);border:1px solid rgba(57,255,20,.2);backdrop-filter:blur(20px);}
-.lc-tag{position:absolute;top:-1px;left:30px;background:var(--bg2);padding:0 10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--green);letter-spacing:3px;}
-.corner-tl{position:absolute;top:0;left:0;width:20px;height:20px;border-left:2px solid var(--orange);border-top:2px solid var(--orange);}
-.corner-br{position:absolute;bottom:0;right:0;width:20px;height:20px;border-right:2px solid var(--orange);border-bottom:2px solid var(--orange);}
+/* Login Card */
+.login-card {
+  width:100%;max-width:580px;
+  background:white;
+  border:3px solid var(--ink);
+  box-shadow:8px 8px 0 var(--ink);
+  position:relative;
+  overflow:visible;
+}
+.lc-tag {
+  position:absolute;top:-18px;left:20px;
+  background:var(--red);color:white;
+  font-family:'Bangers',cursive;font-size:12px;letter-spacing:2px;
+  padding:2px 14px;
+  border:2px solid var(--ink);
+  box-shadow:2px 2px 0 var(--ink);
+}
+.lc-body { padding:36px 44px; }
+.corner-stamp {
+  position:absolute;bottom:-8px;right:-8px;
+  width:36px;height:36px;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:16px;
+}
 
 /* Panels */
-.lp{display:none;animation:fadeSlide .4s ease;}
-.lp.active{display:block;}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.lp { display:none; animation:panelIn .35s ease; }
+.lp.active { display:block; }
+@keyframes panelIn { from{opacity:0;transform:translateX(12px)} to{opacity:1;transform:translateX(0)} }
 
-/* STEP 1 Role Cards */
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
-.role-card{padding:20px 12px;border:1px solid rgba(57,255,20,.15);background:rgba(57,255,20,.03);cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);user-select:none;}
-.role-card:hover{border-color:var(--green);background:rgba(57,255,20,.07);transform:translateY(-3px);box-shadow:0 6px 24px var(--green-glow);}
-.role-card.selected{border-color:var(--orange);background:rgba(255,107,0,.08);box-shadow:0 0 24px var(--orange-glow);}
-.role-card.selected .role-name{color:var(--orange);}
-.role-icon{font-size:30px;}
-.role-name{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--text-dim);text-align:center;}
-.role-dot{position:absolute;top:8px;right:10px;width:8px;height:8px;border-radius:50%;background:rgba(57,255,20,.2);transition:all .2s;}
-.role-card.selected .role-dot{background:var(--orange);box-shadow:0 0 8px var(--orange);}
-.role-desc{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:1px;text-align:center;line-height:1.5;}
+/* STEP 1: Role Grid */
+.role-grid { display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px; }
+.role-card {
+  padding:20px 14px;
+  border:3px solid var(--ink);
+  background:var(--paper);
+  cursor:pointer;transition:all .15s;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  position:relative;
+  box-shadow:4px 4px 0 var(--ink);
+  user-select:none;
+}
+.role-card:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink); background:var(--paper2); }
+.role-card.selected { border-color:var(--red); box-shadow:4px 4px 0 var(--red); background:var(--red-light); }
+.role-card.selected .role-name { color:var(--red); }
+.role-icon { font-size:32px; }
+.role-name { font-family:'Bangers',cursive;font-size:14px;letter-spacing:2px;color:var(--ink); }
+.role-desc { font-family:'Patrick Hand',cursive;font-size:11px;color:#666;text-align:center;line-height:1.4; }
+.role-check {
+  position:absolute;top:6px;right:8px;
+  width:18px;height:18px;
+  border:2px solid var(--ink);
+  background:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;
+  transition:all .2s;
+}
+.role-card.selected .role-check { background:var(--red);border-color:var(--red);color:white; }
 
 /* STEP 2 Google */
-.info-box{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-left:3px solid var(--orange);background:rgba(255,107,0,.06);margin-bottom:20px;}
-.info-txt{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:1px;line-height:1.6;}
-.info-txt strong{color:var(--orange);display:block;margin-bottom:3px;}
-.selected-badge{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.1);margin-bottom:20px;}
-.google-btn{width:100%;padding:15px 20px;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:14px;font-family:'Rajdhani',sans-serif;font-size:17px;font-weight:600;color:#222;transition:all .2s;margin-top:4px;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);}
-.google-btn:hover{background:#f0f0f0;box-shadow:0 0 30px rgba(255,255,255,.15);transform:scale(1.01);}
-.g-loading{display:none;align-items:center;justify-content:center;gap:12px;padding:16px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);letter-spacing:2px;margin-top:10px;}
-.g-spinner{width:18px;height:18px;border:2px solid rgba(57,255,20,.2);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.ssl-note{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);text-align:center;margin-top:16px;letter-spacing:2px;}
+.speech-box {
+  border:3px solid var(--ink);
+  background:var(--yellow-light);
+  padding:14px 18px;
+  margin-bottom:18px;
+  position:relative;
+  border-radius:0 16px 16px 16px;
+}
+.speech-box::before {
+  content:'!';
+  position:absolute;top:-14px;left:-14px;
+  width:28px;height:28px;
+  background:var(--yellow);
+  border:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bangers',cursive;font-size:16px;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.speech-txt { font-family:'Patrick Hand',cursive;font-size:13px;color:var(--ink);line-height:1.6; }
+.speech-txt strong { color:var(--red);font-size:14px; }
+.sel-badge-row {
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;
+  border:2px solid var(--ink);
+  background:var(--paper2);
+  margin-bottom:18px;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.google-btn {
+  width:100%;padding:14px 20px;
+  background:var(--ink);
+  border:3px solid var(--ink);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  font-family:'Bangers',cursive;font-size:17px;letter-spacing:2px;color:white;
+  transition:all .15s;
+  box-shadow:5px 5px 0 var(--red);
+}
+.google-btn:hover { transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--red); }
+.g-loading { display:none;align-items:center;justify-content:center;gap:12px;padding:14px;font-family:'Patrick Hand',cursive;font-size:14px;color:var(--ink); }
+.g-dots span {
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--ink);margin:0 2px;
+  animation:dotBounce 1s ease-in-out infinite;
+}
+.g-dots span:nth-child(2){animation-delay:.15s}
+.g-dots span:nth-child(3){animation-delay:.3s}
+@keyframes dotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-/* STEP 3 Role key */
-.role-display{display:flex;align-items:center;gap:16px;padding:14px 18px;background:rgba(57,255,20,.05);border-left:3px solid var(--green);margin-bottom:20px;}
-.rd-icon{font-size:28px;}
-.rd-name{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:var(--green);letter-spacing:2px;}
-.rd-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1px;margin-top:2px;}
-.user-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.1);margin-bottom:22px;}
-.user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4285F4,#34A853);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;font-family:'Rajdhani',sans-serif;flex-shrink:0;}
-.form-group{margin-bottom:20px;}
-.form-label{display:block;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-dim);margin-bottom:8px;text-transform:uppercase;}
-.form-input{width:100%;background:rgba(57,255,20,.04);border:1px solid rgba(57,255,20,.2);border-left:2px solid var(--green);color:var(--text);font-family:'Share Tech Mono',monospace;font-size:14px;padding:12px 16px;outline:none;transition:all .2s;}
-.form-input:focus{border-color:var(--green);box-shadow:0 0 20px var(--green-glow);background:rgba(57,255,20,.07);}
-.form-input::placeholder{color:var(--text-dim);}
-.err-msg{font-family:'Share Tech Mono',monospace;font-size:11px;color:#ff4444;letter-spacing:1px;margin-top:8px;display:none;}
-.shake{animation:shake .4s ease;}
+/* STEP 3 */
+.role-display-card {
+  display:flex;align-items:center;gap:16px;
+  padding:14px 18px;
+  border:3px solid var(--green);
+  background:var(--green-light);
+  margin-bottom:18px;
+  box-shadow:4px 4px 0 var(--green);
+}
+.user-row {
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;
+  border:2px solid var(--ink);
+  background:var(--paper2);
+  margin-bottom:20px;
+}
+.uavatar {
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,#4285F4,#34A853);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bangers',cursive;font-size:16px;color:white;flex-shrink:0;
+  border:2px solid var(--ink);
+}
+.form-lbl { display:block;font-family:'Bangers',cursive;font-size:14px;letter-spacing:2px;color:var(--ink);margin-bottom:6px; }
+.form-inp {
+  width:100%;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  color:var(--ink);
+  font-family:'Patrick Hand',cursive;font-size:16px;
+  padding:12px 16px;outline:none;transition:all .2s;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.form-inp:focus { border-color:var(--red); box-shadow:3px 3px 0 var(--red); }
+.form-inp::placeholder { color:#aaa; }
+.err-msg { font-family:'Patrick Hand',cursive;font-size:13px;color:var(--red);margin-top:8px;display:none;font-weight:700; }
+.shake { animation:shake .4s ease; }
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 
 /* SUCCESS */
-.login-success{display:none;text-align:center;padding:16px 0;}
-.s-icon{font-size:60px;margin-bottom:16px;animation:popIn .5s cubic-bezier(.175,.885,.32,1.275);}
-@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.s-title{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;color:var(--green);letter-spacing:3px;margin-bottom:8px;}
-.s-sub{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);letter-spacing:2px;margin-bottom:4px;}
-.s-badge{display:inline-block;margin-top:20px;padding:8px 24px;border:1px solid var(--orange);font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:3px;color:var(--orange);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
-.btn-ghost{background:none;border:1px solid rgba(57,255,20,.2);color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:11px;padding:8px 20px;cursor:pointer;letter-spacing:2px;transition:color .2s;}
-.btn-ghost:hover{color:var(--green);}
-.btn-link{background:none;border:none;color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:11px;cursor:pointer;letter-spacing:2px;transition:color .2s;padding:8px;display:block;width:100%;margin-top:12px;}
-.btn-link:hover{color:var(--green);}
+.login-success { display:none;text-align:center;padding:20px 0; }
+.s-icon { font-size:64px;margin-bottom:12px;animation:popIn .5s cubic-bezier(.175,.885,.32,1.275); }
+@keyframes popIn{from{transform:scale(0) rotate(-15deg)}to{transform:scale(1) rotate(0deg)}}
+.s-title { font-family:'Bangers',cursive;font-size:28px;letter-spacing:3px;color:var(--green);margin-bottom:8px;text-shadow:3px 3px 0 rgba(45,106,79,0.2); }
+.s-sub { font-family:'Patrick Hand',cursive;font-size:15px;color:#666;margin-bottom:4px; }
+.s-stamp {
+  display:inline-block;margin-top:16px;
+  padding:8px 28px;
+  border:3px solid var(--green);
+  background:var(--green-light);
+  font-family:'Bangers',cursive;font-size:16px;letter-spacing:3px;color:var(--green);
+  transform:rotate(-2deg);
+  box-shadow:3px 3px 0 var(--green);
+}
+.btn-ghost { background:none;border:2px solid var(--ink);color:var(--ink);font-family:'Patrick Hand',cursive;font-size:14px;padding:6px 20px;cursor:pointer;margin-top:14px;transition:all .2s; }
+.btn-ghost:hover{background:var(--ink);color:white;}
+.btn-link { background:none;border:none;color:var(--blue);font-family:'Patrick Hand',cursive;font-size:13px;cursor:pointer;margin-top:10px;text-decoration:underline;display:block;width:100%;text-align:center; }
 
-/* HELP */
-#help{background:var(--bg);}
-.help-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;width:100%;max-width:1000px;margin-top:40px;}
-.help-card{position:relative;padding:32px;background:rgba(13,20,16,.6);border:1px solid rgba(57,255,20,.12);transition:all .3s;overflow:hidden;}
-.help-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .3s;box-shadow:0 0 10px var(--green);}
-.help-card:hover{border-color:rgba(57,255,20,.4);transform:translateY(-4px);}
-.help-card:hover::before{height:100%;}
-.help-icon{font-size:36px;margin-bottom:16px;}
-.help-title{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;color:var(--white);margin-bottom:10px;}
-.help-desc{font-size:14px;line-height:1.7;color:var(--text-dim);}
+/* ═══ HELP SECTION ═══ */
+#help { background:var(--paper); }
+.help-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;width:100%;max-width:1000px;margin-top:40px; }
+.help-card {
+  padding:28px 24px;
+  background:white;
+  border:3px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);
+  transition:all .15s;
+  position:relative;overflow:hidden;
+}
+.help-card::before {
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:5px;
+  background:var(--ink);
+}
+.help-card:nth-child(2)::before{background:var(--red);}
+.help-card:nth-child(3)::before{background:var(--blue);}
+.help-card:nth-child(4)::before{background:var(--yellow);}
+.help-card:nth-child(5)::before{background:var(--green);}
+.help-card:nth-child(6)::before{background:var(--purple);}
+.help-card:hover { transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
+.h-icon { font-size:36px;margin-bottom:14px; }
+.h-title { font-family:'Bangers',cursive;font-size:18px;letter-spacing:2px;color:var(--ink);margin-bottom:8px; }
+.h-desc { font-family:'Patrick Hand',cursive;font-size:14px;line-height:1.7;color:#555; }
 
-/* SOCIAL */
-#get-in-touch{background:var(--bg3);}
-.social-links{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:800px;margin-top:48px;}
-.social-card{display:flex;align-items:center;gap:20px;padding:24px 28px;background:rgba(13,20,16,.7);border:1px solid rgba(57,255,20,.1);text-decoration:none;transition:all .3s;position:relative;overflow:hidden;clip-path:polygon(16px 0%,100% 0%,calc(100% - 16px) 100%,0% 100%);}
-.social-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--green-glow),transparent);opacity:0;transition:opacity .3s;}
-.social-card:hover{border-color:var(--green);transform:scale(1.02);}
-.social-card:hover::before{opacity:1;}
-.sc-discord{border-color:rgba(88,101,242,.3)!important;}.sc-discord:hover{border-color:#5865F2!important;}.sc-discord::before{background:linear-gradient(135deg,rgba(88,101,242,.15),transparent)!important;}
-.sc-ig{border-color:rgba(225,48,108,.3)!important;}.sc-ig:hover{border-color:#e1306c!important;}.sc-ig::before{background:linear-gradient(135deg,rgba(225,48,108,.12),transparent)!important;}
-.sc-yt{border-color:rgba(255,0,0,.3)!important;}.sc-yt:hover{border-color:#FF0000!important;}.sc-yt::before{background:linear-gradient(135deg,rgba(255,0,0,.1),transparent)!important;}
-.sc-em{border-color:rgba(57,255,20,.3)!important;}
-.si{width:48px;height:48px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
-.sn{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--white);margin-bottom:4px;}
-.sh{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);}
-.sa{margin-left:auto;color:var(--text-dim);font-size:18px;position:relative;z-index:1;transition:transform .2s,color .2s;}
-.social-card:hover .sa{transform:translateX(4px);color:var(--green);}
-.sinfo{position:relative;z-index:1;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+/* ═══ SOCIAL SECTION ═══ */
+#get-in-touch { background:var(--paper2); }
+.social-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:800px;margin-top:40px; }
+.social-card {
+  display:flex;align-items:center;gap:18px;
+  padding:20px 24px;
+  background:white;
+  border:3px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);
+  text-decoration:none;
+  transition:all .15s;
+  position:relative;
+}
+.social-card:hover { transform:translate(-3px,-3px); box-shadow:8px 8px 0 var(--ink); }
+.social-card.disc:hover { box-shadow:8px 8px 0 #5865F2; border-color:#5865F2; }
+.social-card.insta:hover { box-shadow:8px 8px 0 #e1306c; border-color:#e1306c; }
+.social-card.yt:hover { box-shadow:8px 8px 0 #FF0000; border-color:#FF0000; }
+.social-card.em:hover { box-shadow:8px 8px 0 var(--green); border-color:var(--green); }
+.soc-icon { width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+.soc-name { font-family:'Bangers',cursive;font-size:16px;letter-spacing:2px;color:var(--ink);margin-bottom:2px; }
+.soc-handle { font-family:'Patrick Hand',cursive;font-size:13px;color:#666; }
+.soc-arr { margin-left:auto;font-family:'Bangers',cursive;font-size:22px;color:#ccc;transition:all .2s; }
+.social-card:hover .soc-arr { color:var(--ink);transform:translateX(4px); }
 
-/* FAQ */
-#faq{background:var(--bg);}
-.faq-list{width:100%;max-width:800px;margin-top:40px;}
-.faq-item{border-bottom:1px solid rgba(57,255,20,.1);}
-.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:24px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:600;color:var(--white);letter-spacing:1px;text-align:left;transition:color .2s;}
-.faq-q:hover,.faq-q.active{color:var(--green);}
-.faq-ind{width:24px;height:24px;flex-shrink:0;border:1px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--green);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);transition:transform .3s;}
-.faq-q.active .faq-ind{transform:rotate(45deg);background:var(--green-glow);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:15px;line-height:1.8;color:var(--text-dim);padding:0 4px;}
-.faq-a.open{max-height:200px;padding-bottom:20px;}
+/* ═══ FAQ ═══ */
+#faq { background:var(--paper); }
+.faq-list { width:100%;max-width:800px;margin-top:40px; }
+.faq-item { border:3px solid var(--ink);margin-bottom:12px;box-shadow:4px 4px 0 var(--ink); background:white; }
+.faq-q {
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  font-family:'Bangers',cursive;font-size:17px;letter-spacing:1px;color:var(--ink);text-align:left;transition:background .15s;
+}
+.faq-q:hover,.faq-q.active { background:var(--paper2); }
+.faq-ind {
+  width:28px;height:28px;flex-shrink:0;
+  border:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:900;color:var(--ink);
+  transition:transform .3s;background:white;
+}
+.faq-q.active .faq-ind { background:var(--red);color:white;border-color:var(--red); transform:rotate(45deg); }
+.faq-a { max-height:0;overflow:hidden;transition:max-height .4s ease; }
+.faq-a.open { max-height:200px; }
+.faq-a-inner { padding:12px 20px 18px;font-family:'Patrick Hand',cursive;font-size:15px;line-height:1.8;color:#555;border-top:2px dashed var(--paper3); }
 
-/* FOOTER */
-footer{padding:48px 80px;background:rgba(0,0,0,.6);border-top:1px solid rgba(57,255,20,.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
-.fl{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;letter-spacing:4px;color:var(--white);}
-.fl span{color:var(--green);}
-.fc{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-dim);letter-spacing:2px;}
-.fa a{color:var(--text-dim);text-decoration:none;font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;transition:color .2s;margin-left:16px;}
+/* ═══ FOOTER ═══ */
+footer {
+  padding:40px 80px;
+  background:var(--ink);
+  border-top:4px solid var(--red);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+  position:relative;z-index:1;
+}
+.fl { font-family:'Bangers',cursive;font-size:20px;letter-spacing:4px;color:white; }
+.fl span { color:var(--yellow); }
+.fc { font-family:'Patrick Hand',cursive;font-size:13px;color:rgba(255,255,255,0.5); }
+.fa a { color:rgba(255,255,255,0.6);text-decoration:none;font-family:'Patrick Hand',cursive;font-size:13px;margin-left:16px;transition:color .2s; }
+.fa a:hover { color:white; }
 
-/* MISC */
-.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
-.fade-up.visible{opacity:1;transform:translateY(0);}
-.particle{position:absolute;border-radius:50%;animation:floatUp var(--dur) linear infinite;opacity:0;box-shadow:0 0 4px var(--green);}
-@keyframes floatUp{0%{transform:translate(var(--sx),100vh);opacity:0}10%{opacity:.8}90%{opacity:.6}100%{transform:translate(var(--ex),-10px);opacity:0}}
-.dot-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;}
-.dot-diamond{width:7px;height:7px;background:var(--green);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);box-shadow:0 0 8px var(--green);}
-.dot-line{width:1px;height:20px;background:var(--green);opacity:.5;}
+/* ═══ SCROLL FADE ═══ */
+.fade-up { opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease; }
+.fade-up.visible { opacity:1;transform:translateY(0); }
 
+/* ══════════════════════════════════════
+   DAILY SCHEDULE POPUP
+══════════════════════════════════════ */
+.popup-overlay {
+  display:none;
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(26,26,46,0.6);
+  backdrop-filter:blur(2px);
+  align-items:center;justify-content:center;
+}
+.popup-overlay.show { display:flex; }
+
+.schedule-popup {
+  width:90%;max-width:700px;
+  max-height:88vh;overflow-y:auto;
+  background:white;
+  border:4px solid var(--ink);
+  box-shadow:10px 10px 0 var(--ink);
+  position:relative;
+  animation:popupIn .35s cubic-bezier(.175,.885,.32,1.275);
+}
+@keyframes popupIn{from{transform:scale(.8) rotate(-3deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+
+.popup-header {
+  background:var(--ink);
+  padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:10;
+}
+.popup-title { font-family:'Bangers',cursive;font-size:22px;letter-spacing:3px;color:white; }
+.popup-title span { color:var(--yellow); }
+.popup-close {
+  width:36px;height:36px;
+  background:var(--red);color:white;
+  border:3px solid white;
+  font-family:'Bangers',cursive;font-size:18px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .15s;flex-shrink:0;
+}
+.popup-close:hover { background:white;color:var(--red); }
+
+.popup-body { padding:24px; }
+
+.popup-role-badge {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;
+  background:var(--paper2);
+  border:3px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+  font-family:'Bangers',cursive;font-size:14px;letter-spacing:2px;color:var(--ink);
+  margin-bottom:20px;
+}
+
+.popup-date {
+  font-family:'Permanent Marker',cursive;
+  font-size:14px;color:var(--blue);
+  margin-bottom:20px;
+  padding:10px 16px;
+  border-left:4px solid var(--blue);
+  background:var(--blue-light);
+}
+
+/* Schedule list */
+.schedule-list { margin-bottom:24px; }
+.sched-empty {
+  text-align:center;padding:32px;
+  font-family:'Patrick Hand',cursive;font-size:16px;color:#aaa;
+  border:3px dashed #ddd;
+}
+.sched-item {
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 16px;
+  border:3px solid var(--ink);
+  background:var(--paper);
+  margin-bottom:10px;
+  box-shadow:3px 3px 0 var(--ink);
+  position:relative;
+  animation:slideIn .3s ease;
+}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.sched-item.done-item { opacity:0.6; background:#f5f5f5; }
+.sched-item.done-item .sched-task { text-decoration:line-through;color:#aaa; }
+.sched-priority {
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;
+  border:2px solid var(--ink);
+}
+.pri-high { background:var(--red); }
+.pri-med { background:var(--yellow); }
+.pri-low { background:var(--green); }
+.sched-info { flex:1; }
+.sched-time { font-family:'Bangers',cursive;font-size:13px;letter-spacing:1px;color:var(--blue);margin-bottom:3px; }
+.sched-task { font-family:'Patrick Hand',cursive;font-size:15px;color:var(--ink);line-height:1.4; }
+.sched-assigned { font-family:'Patrick Hand',cursive;font-size:11px;color:#888;margin-top:4px; }
+.sched-actions { display:flex;gap:6px;flex-shrink:0; }
+.sched-btn {
+  width:28px;height:28px;
+  border:2px solid var(--ink);background:white;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;
+  transition:all .15s;
+}
+.sched-btn:hover { background:var(--ink);color:white; }
+.sched-btn.del:hover { background:var(--red);border-color:var(--red); }
+.sched-btn.done-btn:hover { background:var(--green);border-color:var(--green); }
+
+/* Add schedule form */
+.add-sched-form {
+  border:3px solid var(--ink);
+  background:var(--paper2);
+  padding:20px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.add-sched-title { font-family:'Bangers',cursive;font-size:17px;letter-spacing:2px;color:var(--ink);margin-bottom:16px; }
+.form-row { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px; }
+.form-row-3 { display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px; }
+.f-grp { display:flex;flex-direction:column;gap:4px; }
+.f-lbl { font-family:'Patrick Hand',cursive;font-size:12px;font-weight:700;color:var(--ink);letter-spacing:1px; }
+.f-inp,.f-sel {
+  background:white;border:2px solid var(--ink);
+  color:var(--ink);font-family:'Patrick Hand',cursive;font-size:14px;
+  padding:8px 12px;outline:none;transition:border .2s;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.f-inp:focus,.f-sel:focus { border-color:var(--red);box-shadow:2px 2px 0 var(--red); }
+.f-inp.full { width:100%;margin-bottom:12px; }
+.add-btn {
+  width:100%;padding:12px;
+  background:var(--red);color:white;
+  border:3px solid var(--ink);
+  font-family:'Bangers',cursive;font-size:16px;letter-spacing:3px;
+  cursor:pointer;box-shadow:4px 4px 0 var(--ink);
+  transition:all .15s;
+}
+.add-btn:hover { transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink); }
+
+/* View-only notice for players */
+.view-only-notice {
+  padding:16px;border:3px dashed var(--blue);
+  background:var(--blue-light);
+  text-align:center;margin-bottom:20px;
+}
+.view-only-notice p { font-family:'Patrick Hand',cursive;font-size:14px;color:var(--blue); }
+
+/* Mobile */
 @media(max-width:768px){
-  nav{padding:0 20px;}
+  nav{padding:0 16px;}
   .hamburger{display:flex;}
-  .nav-links{position:fixed;inset:64px 0 0;flex-direction:column;background:rgba(8,12,10,.98);padding:40px 20px;transform:translateX(100%);transition:transform .3s;z-index:400;}
+  .nav-links{position:fixed;inset:68px 0 0;flex-direction:column;background:var(--paper2);border-top:3px solid var(--ink);padding:24px 20px;transform:translateX(100%);transition:transform .3s;z-index:400;}
   .nav-links.open{transform:translateX(0);}
-  .nav-links a{font-size:16px;padding:16px;}
+  .nav-links a{font-size:18px;padding:12px;}
   section{padding:80px 20px;}
-  .hero-hud-t,.hero-hud-b,.tick{display:none;}
-  .social-links{grid-template-columns:1fr;}
-  .login-card{padding:28px 20px;}
   .role-grid{grid-template-columns:1fr 1fr;}
+  .login-card{box-shadow:5px 5px 0 var(--ink);}
+  .lc-body{padding:24px 20px;}
+  .social-grid,.form-row,.form-row-3{grid-template-columns:1fr;}
   footer{padding:32px 24px;flex-direction:column;text-align:center;}
+  .fa a:first-child{margin-left:0;}
+  .schedule-popup{width:95%;max-height:92vh;}
+  .popup-body{padding:16px;}
+  .hp1,.hp2,.hp3,.hp4{display:none;}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-
 <!-- ═══ NAVBAR ═══ -->
 <nav>
   <a href="#home" class="nav-logo">
-    <div class="logo-bracket">
+    <div class="logo-box">
       <span class="logo-text">AETHERIX <span>ESPORTS</span></span>
     </div>
   </a>
@@ -243,32 +755,28 @@ footer{padding:48px 80px;background:rgba(0,0,0,.6);border-top:1px solid rgba(57,
     <li><a href="#home">HOME</a></li>
     <li><a href="#login">LOGIN</a></li>
     <li><a href="#help">HELP</a></li>
-    <li><a href="#get-in-touch" class="nav-cta">GET IN TOUCH</a></li>
+    <li><a href="#get-in-touch" class="nav-cta-link">GET IN TOUCH</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <section id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-scan-l"></div>
-  <div class="hero-scan-r"></div>
-  <div class="hero-hud-t"></div>
-  <div class="hero-hud-b"></div>
-  <div class="tick tl"></div><div class="tick tr"></div>
-  <div class="tick bl"></div><div class="tick br"></div>
-  <div class="dot-center" style="top:80px;"><div class="dot-line"></div><div class="dot-diamond"></div></div>
-  <div class="dot-center" style="bottom:32px;"><div class="dot-diamond"></div><div class="dot-line"></div></div>
-  <div class="hero-logo-mark">AX</div>
-  <div id="particles"></div>
-  <div class="hero-content">
-    <div class="hero-tag">COMPETITIVE GAMING ORGANIZATION</div>
-    <h1 class="hero-title">AETHERIX<br><span class="green">ESPORTS</span></h1>
-    <p class="hero-sub">RISE. COMPETE. DOMINATE.</p>
-    <div class="hero-buttons">
-      <a href="#login" class="btn-primary">JOIN THE ROSTER</a>
-      <a href="#get-in-touch" class="btn-secondary">CONNECT WITH US</a>
+  <div class="hero-lines"></div>
+  <div class="hero-panel hp1"></div>
+  <div class="hero-panel hp2"></div>
+  <div class="hero-panel hp3"></div>
+  <div class="hero-panel hp4"></div>
+  <div class="sfx sfx1">BOOM</div>
+  <div class="sfx sfx2">LEVEL UP!</div>
+
+  <div class="hero-content fade-up">
+    <div class="hero-badge">✦ COMPETITIVE GAMING ORGANIZATION ✦</div>
+    <h1 class="hero-title">AETHERIX<br><span class="colored">ESPORTS</span></h1>
+    <span class="hero-sub">~ RISE · COMPETE · DOMINATE ~</span>
+    <div class="hero-btns">
+      <a href="#login" class="btn-main">⚔ JOIN NOW</a>
+      <a href="#get-in-touch" class="btn-alt">☎ CONTACT US</a>
     </div>
   </div>
 </section>
@@ -276,220 +784,208 @@ footer{padding:48px 80px;background:rgba(0,0,0,.6);border-top:1px solid rgba(57,
 <!-- ═══ LOGIN ═══ -->
 <section id="login">
   <div class="fade-up" style="text-align:center;">
-    <div class="section-label" style="justify-content:center;">ACCESS PORTAL</div>
-    <h2 class="section-title">SECURE <span class="accent">LOGIN</span></h2>
+    <div class="sec-tag" style="justify-content:center;">ACCESS PORTAL</div>
+    <h2 class="sec-title">SECURE <span class="red">LOGIN</span></h2>
   </div>
-  <div class="section-divider"></div>
+  <div class="manga-divider"></div>
 
-  <!-- Step bar -->
+  <!-- Steps -->
   <div class="login-steps fade-up">
-    <div class="step-node active" id="sn1">
-      <div class="step-circle">1</div>
-      <div class="step-label">SELECT ROLE</div>
-    </div>
-    <div class="step-node" id="sn2">
-      <div class="step-circle">2</div>
-      <div class="step-label">GOOGLE AUTH</div>
-    </div>
-    <div class="step-node" id="sn3">
-      <div class="step-circle">3</div>
-      <div class="step-label">ROLE KEY</div>
-    </div>
+    <div class="step-node active" id="sn1"><div class="step-circle">1</div><div class="step-label">PICK ROLE</div></div>
+    <div class="step-node" id="sn2"><div class="step-circle">2</div><div class="step-label">GOOGLE</div></div>
+    <div class="step-node" id="sn3"><div class="step-circle">3</div><div class="step-label">PASSKEY</div></div>
   </div>
 
-  <!-- Card -->
   <div class="login-card fade-up">
-    <div class="lc-tag" id="lcTag">SYS_AUTH // STEP_01</div>
-    <div class="corner-tl"></div>
-    <div class="corner-br"></div>
+    <div class="lc-tag" id="lcTag">STEP 01 — ROLE SELECT</div>
+    <div class="corner-stamp">★</div>
+    <div class="lc-body">
 
-    <!-- PANEL 1: Select Role -->
-    <div class="lp active" id="p1">
-      <div style="font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;color:var(--text-dim);margin-bottom:18px;">// SELECT YOUR CLEARANCE ROLE</div>
-      <div class="role-grid">
-        <div class="role-card" onclick="selectRole(this,'OWNER','👑','owner')" data-role="owner">
-          <div class="role-dot"></div>
-          <div class="role-icon">👑</div>
-          <div class="role-name">OWNER</div>
-          <div class="role-desc">Supreme authority<br>Full system control</div>
+      <!-- P1: Roles -->
+      <div class="lp active" id="p1">
+        <div style="font-family:'Bangers',cursive;font-size:16px;letter-spacing:2px;color:var(--ink);margin-bottom:16px;">// CHOOSE YOUR CLEARANCE LEVEL:</div>
+        <div class="role-grid">
+          <div class="role-card" onclick="selRole(this,'OWNER','👑','owner')">
+            <div class="role-check">✓</div>
+            <div class="role-icon">👑</div>
+            <div class="role-name">OWNER</div>
+            <div class="role-desc">Full system control<br>Supreme authority</div>
+          </div>
+          <div class="role-card" onclick="selRole(this,'ADMIN','🛡️','admin')">
+            <div class="role-check">✓</div>
+            <div class="role-icon">🛡️</div>
+            <div class="role-name">ADMIN</div>
+            <div class="role-desc">Manage teams &amp;<br>events access</div>
+          </div>
+          <div class="role-card" onclick="selRole(this,'MANAGEMENT','⚙️','management')">
+            <div class="role-check">✓</div>
+            <div class="role-icon">⚙️</div>
+            <div class="role-name">MANAGEMENT</div>
+            <div class="role-desc">Rosters &amp;<br>scheduling control</div>
+          </div>
+          <div class="role-card" onclick="selRole(this,'PLAYERS','🎮','player')">
+            <div class="role-check">✓</div>
+            <div class="role-icon">🎮</div>
+            <div class="role-name">PLAYERS</div>
+            <div class="role-desc">Stats &amp; tournament<br>dashboard</div>
+          </div>
         </div>
-        <div class="role-card" onclick="selectRole(this,'ADMIN','🛡️','admin')" data-role="admin">
-          <div class="role-dot"></div>
-          <div class="role-icon">🛡️</div>
-          <div class="role-name">ADMIN</div>
-          <div class="role-desc">Administrative access<br>Teams &amp; events</div>
-        </div>
-        <div class="role-card" onclick="selectRole(this,'MANAGEMENT','⚙️','management')" data-role="management">
-          <div class="role-dot"></div>
-          <div class="role-icon">⚙️</div>
-          <div class="role-name">MANAGEMENT</div>
-          <div class="role-desc">Operational control<br>Rosters &amp; scheduling</div>
-        </div>
-        <div class="role-card" onclick="selectRole(this,'PLAYERS','🎮','player')" data-role="player">
-          <div class="role-dot"></div>
-          <div class="role-icon">🎮</div>
-          <div class="role-name">PLAYERS</div>
-          <div class="role-desc">Player dashboard<br>Stats &amp; tournaments</div>
-        </div>
-      </div>
-      <button class="btn-primary" style="width:100%;justify-content:center;margin-top:24px;" onclick="goStep2()">CONFIRM ROLE →</button>
-      <p class="err-msg" id="roleErr">⚠ Please select a role to continue</p>
-    </div>
-
-    <!-- PANEL 2: Google Auth -->
-    <div class="lp" id="p2">
-      <div class="info-box">
-        <span style="font-size:22px;flex-shrink:0;">🔐</span>
-        <div class="info-txt">
-          <strong>IDENTITY VERIFICATION — STEP 2/3</strong>
-          Sign in with your Google account to verify your identity. You will then enter your role-specific access key issued by the Owner.
-        </div>
+        <button class="btn-main" style="width:100%;justify-content:center;margin-top:20px;" onclick="goStep2()">CONFIRM ROLE →</button>
+        <p class="err-msg" id="roleErr">⚠ Pehle koi role select karo!</p>
       </div>
 
-      <div class="selected-badge">
-        <span id="p2Icon" style="font-size:20px;">👑</span>
-        <div>
-          <div style="font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:var(--green);letter-spacing:2px;" id="p2Role">OWNER</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:1px;">SELECTED CLEARANCE LEVEL</div>
+      <!-- P2: Google -->
+      <div class="lp" id="p2">
+        <div class="speech-box">
+          <div class="speech-txt"><strong>IDENTITY VERIFICATION</strong><br>Apna Google account se sign in karo. Iske baad role-specific passkey enter karni hogi jo Owner ne set ki hai.</div>
         </div>
-        <button onclick="goStep1()" style="margin-left:auto;background:none;border:1px solid rgba(57,255,20,.2);color:var(--text-dim);font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 10px;cursor:pointer;letter-spacing:1px;transition:color .2s;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">CHANGE</button>
-      </div>
-
-      <button class="google-btn" id="gBtn" onclick="simulateGoogle()">
-        <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        CONTINUE WITH GOOGLE
-      </button>
-      <div class="g-loading" id="gLoad"><div class="g-spinner"></div>AUTHENTICATING WITH GOOGLE...</div>
-      <div class="ssl-note" style="margin-top:18px;">🔒 &nbsp; ENCRYPTED &nbsp;|&nbsp; SSL SECURED &nbsp;|&nbsp; GOOGLE OAUTH 2.0</div>
-    </div>
-
-    <!-- PANEL 3: Role Passkey -->
-    <div class="lp" id="p3">
-      <div class="role-display">
-        <div class="rd-icon" id="p3Icon">👑</div>
-        <div>
-          <div class="rd-name" id="p3RoleName">OWNER ACCESS</div>
-          <div class="rd-sub">ENTER THE PASSKEY SET BY THE OWNER</div>
+        <div class="sel-badge-row">
+          <span id="p2Icon" style="font-size:20px;">👑</span>
+          <div>
+            <div style="font-family:'Bangers',cursive;font-size:13px;letter-spacing:2px;color:var(--red);" id="p2Role">OWNER</div>
+            <div style="font-family:'Patrick Hand',cursive;font-size:11px;color:#888;">SELECTED ROLE</div>
+          </div>
+          <button onclick="goStep1()" style="margin-left:auto;background:none;border:2px solid var(--ink);color:var(--ink);font-family:'Patrick Hand',cursive;font-size:12px;padding:4px 12px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='var(--ink)';this.style.color='white'" onmouseout="this.style.background='none';this.style.color='var(--ink)'">CHANGE</button>
         </div>
+        <button class="google-btn" id="gBtn" onclick="simulateGoogle()">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          GOOGLE SE LOGIN KARO
+        </button>
+        <div class="g-loading" id="gLoad"><div class="g-dots"><span></span><span></span><span></span></div>&nbsp; Authenticating...</div>
+        <div style="text-align:center;margin-top:12px;font-family:'Patrick Hand',cursive;font-size:12px;color:#aaa;">🔒 Secure Google OAuth 2.0</div>
       </div>
 
-      <div class="user-row">
-        <div class="user-avatar" id="uAvatar">U</div>
-        <div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);letter-spacing:1px;" id="uEmail">user@gmail.com</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:rgba(57,255,20,.5);letter-spacing:.5px;">✓ Google identity verified</div>
+      <!-- P3: Role Key -->
+      <div class="lp" id="p3">
+        <div class="role-display-card">
+          <div style="font-size:28px;" id="p3Icon">👑</div>
+          <div>
+            <div style="font-family:'Bangers',cursive;font-size:16px;letter-spacing:2px;color:var(--green);" id="p3RoleName">OWNER ACCESS</div>
+            <div style="font-family:'Patrick Hand',cursive;font-size:11px;color:var(--green);">Owner-set passkey enter karo</div>
+          </div>
         </div>
+        <div class="user-row">
+          <div class="uavatar" id="uAv">U</div>
+          <div>
+            <div style="font-family:'Patrick Hand',cursive;font-size:14px;color:var(--ink);font-weight:700;" id="uEmail">user@gmail.com</div>
+            <div style="font-family:'Patrick Hand',cursive;font-size:11px;color:var(--green);">✓ Google verified</div>
+          </div>
+        </div>
+        <div class="form-grp" style="margin-bottom:16px;">
+          <label class="form-lbl" for="roleKey">ROLE ACCESS KEY:</label>
+          <input type="password" id="roleKey" class="form-inp" placeholder="Owner dwara diya hua passkey..." onkeydown="if(event.key==='Enter')verifyKey()">
+        </div>
+        <p class="err-msg" id="keyErr">⚠ Wrong passkey! Owner se sahi key maango.</p>
+        <button class="btn-main" style="width:100%;justify-content:center;" onclick="verifyKey()">VERIFY → ENTER DASHBOARD</button>
+        <button class="btn-link" onclick="goStep2()">← Wapas jaao</button>
       </div>
 
-      <div class="form-group">
-        <label class="form-label" for="roleKey">// ROLE ACCESS KEY</label>
-        <input type="password" id="roleKey" class="form-input" placeholder="Enter passkey issued by Owner" onkeydown="if(event.key==='Enter')verifyKey()">
+      <!-- SUCCESS -->
+      <div class="login-success" id="loginOk">
+        <div class="s-icon">🎉</div>
+        <div class="s-title">ACCESS GRANTED!</div>
+        <div class="s-sub" id="sRole">Welcome, OWNER!</div>
+        <div class="s-sub" id="sUser" style="color:#aaa;font-size:13px;"></div>
+        <div class="s-stamp" id="sStamp">OWNER CLEARANCE ★</div>
+        <div style="margin-top:16px;"><button class="btn-ghost" onclick="resetLogin()">Logout</button></div>
       </div>
-      <p class="err-msg" id="keyErr">⚠ Invalid access key — contact the Owner for the correct passkey.</p>
-      <button class="btn-primary" style="width:100%;justify-content:center;" onclick="verifyKey()">VERIFY &amp; ACCESS DASHBOARD →</button>
-      <button class="btn-link" onclick="goStep2()">← Back to Google Sign In</button>
-    </div>
-
-    <!-- SUCCESS -->
-    <div class="login-success" id="loginOk">
-      <div class="s-icon">✅</div>
-      <div class="s-title">ACCESS GRANTED</div>
-      <div class="s-sub" id="sRole">WELCOME, OWNER</div>
-      <div class="s-sub" id="sUser" style="margin-top:4px;opacity:.6;"></div>
-      <div class="s-badge" id="sBadge">OWNER CLEARANCE</div>
-      <div style="margin-top:24px;"><button class="btn-ghost" onclick="resetLogin()">LOGOUT</button></div>
     </div>
   </div>
 
-  <p class="fade-up" style="text-align:center;margin-top:22px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;">
-    🔒 ENCRYPTED &nbsp;|&nbsp; v2.6.0 &nbsp;|&nbsp; ALL ROLE KEYS ARE OWNER-MANAGED
+  <p class="fade-up" style="text-align:center;margin-top:18px;font-family:'Patrick Hand',cursive;font-size:13px;color:#888;">
+    🔒 Encrypted · v2.6.0 · All role keys are Owner-managed
   </p>
 </section>
 
 <!-- ═══ HELP ═══ -->
 <section id="help">
   <div class="fade-up" style="text-align:center;">
-    <div class="section-label" style="justify-content:center;">SUPPORT CENTER</div>
-    <h2 class="section-title">HOW CAN WE <span class="accent">HELP</span>?</h2>
+    <div class="sec-tag" style="justify-content:center;">SUPPORT</div>
+    <h2 class="sec-title">HOW CAN WE <span class="blue">HELP</span>?</h2>
   </div>
-  <div class="section-divider"></div>
+  <div class="manga-divider"></div>
   <div class="help-grid fade-up">
-    <div class="help-card"><div class="help-icon">⚡</div><div class="help-title">GETTING STARTED</div><p class="help-desc">New to Aetherix Esports? Learn how to join our squads, participate in tournaments, and claim your first victory.</p></div>
-    <div class="help-card"><div class="help-icon">🎮</div><div class="help-title">TOURNAMENTS</div><p class="help-desc">Find all info about upcoming matches, tournament brackets, registration deadlines and prize pools.</p></div>
-    <div class="help-card"><div class="help-icon">🛡️</div><div class="help-title">ACCOUNT SUPPORT</div><p class="help-desc">Issues with your account? Login problems, profile settings, or platform access — we've got you covered.</p></div>
-    <div class="help-card"><div class="help-icon">📡</div><div class="help-title">TECHNICAL ISSUES</div><p class="help-desc">Server errors, lag issues, connection problems? Report bugs and our team will respond within 24 hours.</p></div>
-    <div class="help-card"><div class="help-icon">🏆</div><div class="help-title">RANKINGS &amp; STATS</div><p class="help-desc">Understand our ELO system, rank tiers, leaderboards, and how your performance is tracked.</p></div>
-    <div class="help-card"><div class="help-icon">💬</div><div class="help-title">COMMUNITY RULES</div><p class="help-desc">Read our code of conduct, fair play guidelines, and understand how to keep the community healthy.</p></div>
+    <div class="help-card"><div class="h-icon">⚡</div><div class="h-title">GETTING STARTED</div><p class="h-desc">New to Aetherix Esports? Join our squads, participate in tournaments, and claim your first victory!</p></div>
+    <div class="help-card"><div class="h-icon">🎮</div><div class="h-title">TOURNAMENTS</div><p class="h-desc">Upcoming matches, brackets, registration deadlines, and prize pool info — all here!</p></div>
+    <div class="help-card"><div class="h-icon">🛡️</div><div class="h-title">ACCOUNT SUPPORT</div><p class="h-desc">Login problems, profile settings, or platform access issues — we've got you covered!</p></div>
+    <div class="help-card"><div class="h-icon">📡</div><div class="h-title">TECHNICAL ISSUES</div><p class="h-desc">Server errors, lag, connection problems? Report bugs and our team responds within 24hrs.</p></div>
+    <div class="help-card"><div class="h-icon">🏆</div><div class="h-title">RANKINGS &amp; STATS</div><p class="h-desc">Our ELO system, rank tiers, leaderboards, and how your performance is tracked.</p></div>
+    <div class="help-card"><div class="h-icon">💬</div><div class="h-title">COMMUNITY RULES</div><p class="h-desc">Code of conduct, fair play guidelines — keeping our community healthy and fun!</p></div>
   </div>
-  <div class="fade-up" style="margin-top:40px;text-align:center;">
-    <p style="color:var(--text-dim);margin-bottom:20px;font-size:15px;">Still need help? Reach us directly.</p>
-    <a href="mailto:ocxaetherixesports@gmail.com" class="btn-primary">CONTACT SUPPORT</a>
+  <div class="fade-up" style="margin-top:36px;text-align:center;">
+    <p style="font-family:'Patrick Hand',cursive;font-size:15px;color:#666;margin-bottom:16px;">Still need help? Hit us up!</p>
+    <a href="mailto:ocxaetherixesports@gmail.com" class="btn-main">✉ CONTACT SUPPORT</a>
   </div>
 </section>
 
 <!-- ═══ GET IN TOUCH ═══ -->
 <section id="get-in-touch">
   <div class="fade-up" style="text-align:center;">
-    <div class="section-label" style="justify-content:center;">CONNECT</div>
-    <h2 class="section-title">GET IN <span class="accent">TOUCH</span></h2>
-    <p style="color:var(--text-dim);font-size:16px;max-width:500px;line-height:1.7;margin-top:8px;">Join our community across all platforms. We're always active and ready to connect.</p>
+    <div class="sec-tag" style="justify-content:center;">CONNECT WITH US</div>
+    <h2 class="sec-title">GET IN <span class="red">TOUCH</span></h2>
+    <p style="font-family:'Patrick Hand',cursive;font-size:16px;color:#555;max-width:480px;margin-top:8px;line-height:1.7;">Join our community! We're always active and ready to vibe. 🎮</p>
   </div>
-  <div class="section-divider"></div>
-  <div class="social-links fade-up">
-    <a href="https://discord.gg/UWU8Eqgkj" target="_blank" class="social-card sc-discord">
-      <div class="si"><svg width="28" height="28" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></div>
-      <div class="sinfo"><div class="sn">DISCORD</div><div class="sh">Join our server</div></div><span class="sa">→</span>
+  <div class="manga-divider"></div>
+  <div class="social-grid fade-up">
+    <a href="https://discord.gg/UWU8Eqgkj" target="_blank" class="social-card disc">
+      <div class="soc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg></div>
+      <div><div class="soc-name">DISCORD</div><div class="soc-handle">Join our server</div></div>
+      <span class="soc-arr">→</span>
     </a>
-    <a href="https://www.instagram.com/aetherix.gg?igsh=MXQ0Z2hpbHdha3BpMw==" target="_blank" class="social-card sc-ig">
-      <div class="si"><svg width="28" height="28" viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="50%" stop-color="#dc2743"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><path fill="url(#ig)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-      <div class="sinfo"><div class="sn">INSTAGRAM</div><div class="sh">@aetherix.gg</div></div><span class="sa">→</span>
+    <a href="https://www.instagram.com/aetherix.gg?igsh=MXQ0Z2hpbHdha3BpMw==" target="_blank" class="social-card insta">
+      <div class="soc-icon"><svg width="32" height="32" viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="50%" stop-color="#dc2743"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><path fill="url(#ig)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      <div><div class="soc-name">INSTAGRAM</div><div class="soc-handle">@aetherix.gg</div></div>
+      <span class="soc-arr">→</span>
     </a>
-    <a href="https://youtube.com/@aetherix.esports?si=s5--ugN_51rNypgc" target="_blank" class="social-card sc-yt">
-      <div class="si"><svg width="28" height="28" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
-      <div class="sinfo"><div class="sn">YOUTUBE</div><div class="sh">@aetherix.esports</div></div><span class="sa">→</span>
+    <a href="https://youtube.com/@aetherix.esports?si=s5--ugN_51rNypgc" target="_blank" class="social-card yt">
+      <div class="soc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></div>
+      <div><div class="soc-name">YOUTUBE</div><div class="soc-handle">@aetherix.esports</div></div>
+      <span class="soc-arr">→</span>
     </a>
-    <a href="mailto:ocxaetherixesports@gmail.com" class="social-card sc-em">
-      <div class="si"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div class="sinfo"><div class="sn">E-MAIL</div><div class="sh">ocxaetherixesports@gmail.com</div></div><span class="sa">→</span>
+    <a href="mailto:ocxaetherixesports@gmail.com" class="social-card em">
+      <div class="soc-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+      <div><div class="soc-name">E-MAIL</div><div class="soc-handle">ocxaetherixesports@gmail.com</div></div>
+      <span class="soc-arr">→</span>
     </a>
   </div>
-  <div class="fade-up" style="margin-top:32px;padding:16px 24px;border:1px solid rgba(57,255,20,.15);display:flex;align-items:center;gap:12px;max-width:800px;width:100%;">
-    <div style="width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:blink 2s infinite;flex-shrink:0;"></div>
-    <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text-dim);letter-spacing:2px;">ALL SYSTEMS ONLINE — RESPONSE TIME: &lt;24HRS</span>
+  <div class="fade-up" style="margin-top:28px;display:flex;align-items:center;gap:10px;max-width:800px;width:100%;padding:14px 20px;border:3px solid var(--ink);background:white;box-shadow:4px 4px 0 var(--ink);">
+    <div style="width:10px;height:10px;background:var(--green);border-radius:50%;border:2px solid var(--ink);animation:pulse 2s infinite;flex-shrink:0;"></div>
+    <span style="font-family:'Patrick Hand',cursive;font-size:14px;color:var(--ink);">🟢 All platforms ONLINE — Response time: &lt;24hrs!</span>
   </div>
 </section>
+<style>@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}</style>
 
 <!-- ═══ FAQ ═══ -->
 <section id="faq">
   <div class="fade-up" style="text-align:center;">
-    <div class="section-label" style="justify-content:center;">INTEL DATABASE</div>
-    <h2 class="section-title">FREQUENTLY ASKED <span class="accent">QUESTIONS</span></h2>
+    <div class="sec-tag" style="justify-content:center;">FAQ</div>
+    <h2 class="sec-title">GOT <span class="red">QUESTIONS</span>?</h2>
   </div>
-  <div class="section-divider"></div>
+  <div class="manga-divider"></div>
   <div class="faq-list fade-up">
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What games does Aetherix Esports compete in?<span class="faq-ind">+</span></button>
-      <div class="faq-a">Aetherix Esports competes in Valorant, Free Fire, BGMI, and CS2. We're always expanding — follow our socials for latest updates!</div>
+      <button class="faq-q" onclick="toggleFaq(this)">Aetherix Esports kaunse games mein compete karta hai? <span class="faq-ind">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Valorant, Free Fire, BGMI, aur CS2! Hum aur games bhi explore kar rahe hain — socials follow karo updates ke liye! 🎮</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How can I join the Aetherix Esports roster?<span class="faq-ind">+</span></button>
-      <div class="faq-a">Join our Discord and check the #tryouts channel. You'll fill out a player profile and participate in evaluation scrimmages.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">Main Aetherix roster mein kaise join karoon? <span class="faq-ind">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Hamare Discord join karo aur #tryouts channel check karo! Player profile form fill karna hoga aur evaluation scrimmages mein participate karna hoga. 💪</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Is there a membership fee?<span class="faq-ind">+</span></button>
-      <div class="faq-a">No! Our Discord community and most events are completely free. Some premium tournaments may have a small entry fee.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">Kya membership fee lagti hai? <span class="faq-ind">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Nahi bhai! Discord aur most events bilkul FREE hain. Kuch premium tournaments mein small entry fee ho sakti hai. 🆓</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How do the role-specific login keys work?<span class="faq-ind">+</span></button>
-      <div class="faq-a">After Google authentication, each role (Owner, Admin, Management, Players) requires a unique passkey set exclusively by the Owner. This ensures only authorized personnel access their dashboards. Contact the Owner to receive your role key.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">Role login keys kaise kaam karti hain? <span class="faq-ind">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Google verify hone ke baad, har role (Owner, Admin, Management, Players) ke liye ek unique passkey chahiye jo Owner ne set ki hoti hai. Apna role key Owner se maango! 🔐</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">When are the next tournaments?<span class="faq-ind">+</span></button>
-      <div class="faq-a">Schedules are announced on Instagram and Discord. We run monthly inhouse tournaments and regional competitions — stay tuned for prize pool reveals!</div>
+      <button class="faq-q" onclick="toggleFaq(this)">Next tournaments kab hain? <span class="faq-ind">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Tournament schedules Instagram aur Discord pe announce hoti hain. Monthly inhouse tournaments aur regional competitions hote hain! 🏆</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Can I become a content creator for Aetherix?<span class="faq-ind">+</span></button>
-      <div class="faq-a">Yes! Email us with your channel link, viewership stats, and a brief proposal. We offer content support, event access, and collaboration opportunities.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">Kya main Aetherix ka content creator ban sakta hoon? <span class="faq-ind">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Haan bilkul! Email bhejo apne channel link, viewership stats, aur ek brief proposal ke saath. Hum content support aur collaboration offer karte hain! 🎬</div></div>
     </div>
   </div>
 </section>
@@ -499,33 +995,96 @@ footer{padding:48px 80px;background:rgba(0,0,0,.6);border-top:1px solid rgba(57,
   <div class="fl">AETHERIX <span>ESPORTS</span></div>
   <p class="fc">© 2026 AETHERIX ESPORTS — ALL RIGHTS RESERVED</p>
   <div class="fa">
-    <a href="https://discord.gg/UWU8Eqgkj" target="_blank" onmouseover="this.style.color='#5865F2'" onmouseout="this.style.color='var(--text-dim)'">DISCORD</a>
-    <a href="https://www.instagram.com/aetherix.gg?igsh=MXQ0Z2hpbHdha3BpMw==" target="_blank" onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color='var(--text-dim)'">INSTAGRAM</a>
-    <a href="https://youtube.com/@aetherix.esports?si=s5--ugN_51rNypgc" target="_blank" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='var(--text-dim)'">YOUTUBE</a>
+    <a href="https://discord.gg/UWU8Eqgkj" target="_blank" onmouseover="this.style.color='#5865F2'" onmouseout="this.style.color=''">DISCORD</a>
+    <a href="https://www.instagram.com/aetherix.gg?igsh=MXQ0Z2hpbHdha3BpMw==" target="_blank" onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color=''">INSTAGRAM</a>
+    <a href="https://youtube.com/@aetherix.esports?si=s5--ugN_51rNypgc" target="_blank" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color=''">YOUTUBE</a>
   </div>
 </footer>
 
-<script>
-// Cursor
-const cur=document.getElementById('cursor'),dot=document.getElementById('cursorDot');
-document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px';});
+<!-- ═══════════════════════════════════
+     DAILY SCHEDULE POPUP
+═══════════════════════════════════ -->
+<div class="popup-overlay" id="scheduleOverlay">
+  <div class="schedule-popup">
+    <div class="popup-header">
+      <div class="popup-title">📅 DAILY <span>SCHEDULE</span></div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div id="popupRoleBadge" style="font-family:'Bangers',cursive;font-size:13px;letter-spacing:2px;color:rgba(255,255,255,0.7);padding:3px 12px;border:2px solid rgba(255,255,255,0.3);">OWNER</div>
+        <button class="popup-close" onclick="closeSchedule()">✕</button>
+      </div>
+    </div>
+    <div class="popup-body">
 
-// Nav
+      <div class="popup-date" id="popupDate">📆 Loading date...</div>
+
+      <div class="popup-role-badge">
+        <span id="popupRoleIcon">👑</span>
+        <span id="popupRoleLabel">OWNER</span>
+        <span style="font-family:'Patrick Hand',cursive;font-size:12px;color:#888;margin-left:4px;">— logged in</span>
+      </div>
+
+      <!-- View-only for players -->
+      <div class="view-only-notice" id="viewOnlyNotice" style="display:none;">
+        <p>👀 <strong>Read-only mode</strong> — Sirf OWNER, ADMIN aur MANAGEMENT schedule update kar sakte hain.</p>
+      </div>
+
+      <!-- Schedule list -->
+      <div class="schedule-list">
+        <div id="schedList"></div>
+      </div>
+
+      <!-- Add form (hidden for players) -->
+      <div class="add-sched-form" id="addForm">
+        <div class="add-sched-title">➕ NAYI TASK ADD KARO</div>
+        <div class="form-row">
+          <div class="f-grp">
+            <label class="f-lbl">TIME</label>
+            <input type="time" id="fTime" class="f-inp" value="09:00">
+          </div>
+          <div class="f-grp">
+            <label class="f-lbl">PRIORITY</label>
+            <select id="fPriority" class="f-sel">
+              <option value="high">🔴 HIGH</option>
+              <option value="med" selected>🟡 MEDIUM</option>
+              <option value="low">🟢 LOW</option>
+            </select>
+          </div>
+        </div>
+        <input type="text" id="fTask" class="f-inp full" placeholder="Task kya hai? (e.g. Team scrimmage, Match review...)">
+        <div class="form-row">
+          <div class="f-grp">
+            <label class="f-lbl">ASSIGNED TO</label>
+            <select id="fAssign" class="f-sel">
+              <option value="All">Everyone</option>
+              <option value="Admin">Admin Team</option>
+              <option value="Management">Management</option>
+              <option value="Players">Players</option>
+            </select>
+          </div>
+          <div class="f-grp">
+            <label class="f-lbl">CATEGORY</label>
+            <select id="fCat" class="f-sel">
+              <option value="Practice">🎮 Practice</option>
+              <option value="Meeting">📋 Meeting</option>
+              <option value="Tournament">🏆 Tournament</option>
+              <option value="Review">📊 Review</option>
+              <option value="Other">📌 Other</option>
+            </select>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addTask()">+ ADD TO SCHEDULE</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// NAV
 document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
 
-// Particles
-(function(){
-  const c=document.getElementById('particles');
-  for(let i=0;i<24;i++){
-    const p=document.createElement('div');p.className='particle';
-    const x=Math.random()*100,d=(Math.random()-.5)*80,dur=8+Math.random()*12;
-    p.style.cssText=`left:${x}vw;--sx:${d}px;--ex:${d+(Math.random()-.5)*40}px;--dur:${dur}s;animation-delay:${Math.random()*dur}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;background:${Math.random()>.7?'var(--orange)':'var(--green)'};`;
-    c.appendChild(p);
-  }
-})();
-
-// Scroll fade
+// SCROLL FADE
 const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.12});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 
@@ -537,22 +1096,21 @@ function toggleFaq(btn){
   if(!open){a.classList.add('open');btn.classList.add('active');}
 }
 
-// ══════ LOGIN STATE ══════
-let selRole=null,selIcon='',selLabel='',gUser=null;
+// ══════════════ LOGIN STATE ══════════════
+let curRole=null,curIcon='',curLabel='',gUser=null;
 
-// ⚠️ OWNER SETS THESE PASSWORDS ⚠️
-// Change these values to real secret passkeys before deploying
+// ⚠️ OWNER CHANGE KARE YEH PASSWORDS ⚠️
 const ROLE_KEYS={
-  owner:      'AETHERIX_9517196813',   // Owner changes this
-  admin:      'ADMIN_KEY_2026',     // Owner sets for admin
-  management: 'MGMT_KEY_2026',     // Owner sets for management
-  player:     'PLAYER_KEY_2026'    // Owner sets for players
+  owner:      'PIHUU33',
+  admin:      'ATX33',
+  management: 'ATX_MNGT33',
+  player:     'ATX_M33'
 };
 
-function selectRole(card,label,icon,roleKey){
+function selRole(card,label,icon,roleKey){
   document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('selected'));
   card.classList.add('selected');
-  selRole=roleKey; selIcon=icon; selLabel=label;
+  curRole=roleKey; curIcon=icon; curLabel=label;
   document.getElementById('roleErr').style.display='none';
 }
 
@@ -567,19 +1125,19 @@ function setStep(n){
   document.getElementById('loginOk').style.display='none';
   const panel=document.getElementById('p'+n);
   if(panel)panel.classList.add('active');
-  const tags=['SYS_AUTH // STEP_01','IDENTITY_VERIFY // STEP_02','ROLE_PASSKEY // STEP_03'];
+  const tags=['STEP 01 — ROLE SELECT','STEP 02 — GOOGLE AUTH','STEP 03 — ROLE PASSKEY'];
   document.getElementById('lcTag').textContent=tags[n-1]||tags[0];
 }
 
 function goStep1(){setStep(1);}
 
 function goStep2(){
-  if(!selRole){
+  if(!curRole){
     const e=document.getElementById('roleErr');e.style.display='block';
     setTimeout(()=>e.style.display='none',3000);return;
   }
-  document.getElementById('p2Icon').textContent=selIcon;
-  document.getElementById('p2Role').textContent=selLabel;
+  document.getElementById('p2Icon').textContent=curIcon;
+  document.getElementById('p2Role').textContent=curLabel;
   document.getElementById('gBtn').style.display='flex';
   document.getElementById('gLoad').style.display='none';
   setStep(2);
@@ -589,10 +1147,10 @@ function simulateGoogle(){
   const btn=document.getElementById('gBtn'),load=document.getElementById('gLoad');
   btn.style.display='none'; load.style.display='flex';
   setTimeout(()=>{
-    const email=prompt('🔐  AETHERIX ESPORTS — Google Sign-In\n\nEnter your Gmail address:','your@gmail.com');
+    const email=prompt('🔐  AETHERIX ESPORTS — Google Sign-In\n\nApna Gmail address enter karo:','your@gmail.com');
     if(!email||!email.includes('@')){
       btn.style.display='flex';load.style.display='none';
-      alert('⚠ Please enter a valid Gmail address.');return;
+      alert('⚠ Valid Gmail address dalo!');return;
     }
     gUser={email,name:email.split('@')[0]};
     load.style.display='none';
@@ -601,9 +1159,9 @@ function simulateGoogle(){
 }
 
 function goStep3(){
-  document.getElementById('p3Icon').textContent=selIcon;
-  document.getElementById('p3RoleName').textContent=selLabel+' ACCESS';
-  document.getElementById('uAvatar').textContent=gUser.name[0].toUpperCase();
+  document.getElementById('p3Icon').textContent=curIcon;
+  document.getElementById('p3RoleName').textContent=curLabel+' ACCESS';
+  document.getElementById('uAv').textContent=gUser.name[0].toUpperCase();
   document.getElementById('uEmail').textContent=gUser.email;
   document.getElementById('roleKey').value='';
   document.getElementById('keyErr').style.display='none';
@@ -614,15 +1172,17 @@ function verifyKey(){
   const inp=document.getElementById('roleKey').value.trim();
   const err=document.getElementById('keyErr');
   if(!inp){err.style.display='block';return;}
-  if(inp===ROLE_KEYS[selRole]){
+  if(inp===ROLE_KEYS[curRole]){
     document.querySelectorAll('.lp').forEach(p=>p.classList.remove('active'));
     ['sn1','sn2','sn3'].forEach(id=>{const n=document.getElementById(id);n.classList.remove('active');n.classList.add('done');});
-    document.getElementById('lcTag').textContent='ACCESS_GRANTED // AUTHENTICATED';
-    document.getElementById('sRole').textContent='WELCOME, '+selLabel;
+    document.getElementById('lcTag').textContent='✓ ACCESS GRANTED';
+    document.getElementById('sRole').textContent='Welcome, '+curLabel+'! 🎉';
     document.getElementById('sUser').textContent=gUser.email;
-    document.getElementById('sBadge').textContent=selLabel+' CLEARANCE';
+    document.getElementById('sStamp').textContent=curLabel+' CLEARANCE ★';
     document.getElementById('loginOk').style.display='block';
     err.style.display='none';
+    // Show schedule popup after 800ms
+    setTimeout(()=>openSchedule(), 800);
   } else {
     err.style.display='block';
     const inp_el=document.getElementById('roleKey');
@@ -632,18 +1192,126 @@ function verifyKey(){
 }
 
 function resetLogin(){
-  selRole=null;selIcon='';selLabel='';gUser=null;
+  curRole=null;curIcon='';curLabel='';gUser=null;
   document.querySelectorAll('.role-card').forEach(c=>c.classList.remove('selected'));
   document.getElementById('loginOk').style.display='none';
   setStep(1);
 }
 
+// ══════════════ SCHEDULE SYSTEM ══════════════
+// Shared schedule data (in-memory, persists for session)
+let scheduleData = [
+  { id:1, time:'09:00', task:'Morning team standup meeting', priority:'high', assigned:'All', cat:'Meeting', done:false, addedBy:'OWNER' },
+  { id:2, time:'11:00', task:'Valorant practice scrimmage — map rotation', priority:'med', assigned:'Players', cat:'Practice', done:false, addedBy:'OWNER' },
+  { id:3, time:'14:00', task:'Content review & social media planning', priority:'low', assigned:'Management', cat:'Review', done:false, addedBy:'ADMIN' },
+  { id:4, time:'17:00', task:'Tournament qualifier match — BO3', priority:'high', assigned:'Players', cat:'Tournament', done:false, addedBy:'OWNER' },
+  { id:5, time:'19:30', task:'Post-match analysis session', priority:'med', assigned:'All', cat:'Review', done:false, addedBy:'MANAGEMENT' }
+];
+let nextId=6;
+
+const priColors={ high:'pri-high', med:'pri-med', low:'pri-low' };
+const priLabels={ high:'HIGH', med:'MED', low:'LOW' };
+const catEmojis={ Practice:'🎮', Meeting:'📋', Tournament:'🏆', Review:'📊', Other:'📌' };
+
+function openSchedule(){
+  const overlay=document.getElementById('scheduleOverlay');
+  overlay.classList.add('show');
+
+  // Set role info
+  document.getElementById('popupRoleBadge').textContent=curLabel;
+  document.getElementById('popupRoleIcon').textContent=curIcon;
+  document.getElementById('popupRoleLabel').textContent=curLabel;
+
+  // Set date
+  const now=new Date();
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('popupDate').innerHTML=`📆 <strong>${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}</strong> — Today's Schedule`;
+
+  // Show/hide add form for players
+  const isViewer = curRole==='player';
+  document.getElementById('viewOnlyNotice').style.display = isViewer ? 'block' : 'none';
+  document.getElementById('addForm').style.display = isViewer ? 'none' : 'block';
+
+  renderSchedule();
+}
+
+function closeSchedule(){
+  document.getElementById('scheduleOverlay').classList.remove('show');
+}
+
+function renderSchedule(){
+  const list=document.getElementById('schedList');
+  const sorted=[...scheduleData].sort((a,b)=>a.time.localeCompare(b.time));
+  const isViewer=curRole==='player';
+
+  if(sorted.length===0){
+    list.innerHTML='<div class="sched-empty">📭 Aaj ke liye koi schedule nahi hai!<br>Kuch add karo! ✏️</div>';
+    return;
+  }
+
+  list.innerHTML=sorted.map(item=>`
+    <div class="sched-item${item.done?' done-item':''}" id="si${item.id}">
+      <div class="sched-priority ${priColors[item.priority]}" title="${priLabels[item.priority]} priority"></div>
+      <div class="sched-info">
+        <div class="sched-time">⏰ ${item.time} &nbsp;·&nbsp; ${catEmojis[item.cat]||'📌'} ${item.cat}</div>
+        <div class="sched-task">${item.task}</div>
+        <div class="sched-assigned">👥 ${item.assigned} &nbsp;·&nbsp; Added by: ${item.addedBy}</div>
+      </div>
+      ${!isViewer ? `
+      <div class="sched-actions">
+        <button class="sched-btn done-btn" onclick="toggleDone(${item.id})" title="${item.done?'Undone':'Mark done'}">
+          ${item.done?'↩':'✓'}
+        </button>
+        <button class="sched-btn del" onclick="deleteTask(${item.id})" title="Delete">✕</button>
+      </div>` : ''}
+    </div>
+  `).join('');
+}
+
+function addTask(){
+  const time=document.getElementById('fTime').value;
+  const task=document.getElementById('fTask').value.trim();
+  const priority=document.getElementById('fPriority').value;
+  const assigned=document.getElementById('fAssign').value;
+  const cat=document.getElementById('fCat').value;
+  if(!task){
+    document.getElementById('fTask').style.borderColor='var(--red)';
+    document.getElementById('fTask').placeholder='⚠ Task likhna toh padega!';
+    setTimeout(()=>{document.getElementById('fTask').style.borderColor='';document.getElementById('fTask').placeholder='Task kya hai? (e.g. Team scrimmage, Match review...)';},2000);
+    return;
+  }
+  scheduleData.push({id:nextId++,time,task,priority,assigned,cat,done:false,addedBy:curLabel});
+  document.getElementById('fTask').value='';
+  document.getElementById('fTime').value='09:00';
+  renderSchedule();
+}
+
+function deleteTask(id){
+  scheduleData=scheduleData.filter(i=>i.id!==id);
+  renderSchedule();
+}
+
+function toggleDone(id){
+  const item=scheduleData.find(i=>i.id===id);
+  if(item)item.done=!item.done;
+  renderSchedule();
+}
+
+// Close on overlay click
+document.getElementById('scheduleOverlay').addEventListener('click',function(e){
+  if(e.target===this)closeSchedule();
+});
+
 // Active nav
 const sects=document.querySelectorAll('section[id]');
 window.addEventListener('scroll',()=>{
   let cur='';
-  sects.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});
-  document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--green)':'';});
+  sects.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.style.background=a.getAttribute('href')==='#'+cur?'var(--ink)':'';
+    a.style.color=a.getAttribute('href')==='#'+cur?'white':'';
+  });
 });
 </script>
 </body>
