@@ -543,12 +543,12 @@ const DB   = firebase.database();
 
 // Fallback keys (used if Firebase read fails)
 let ROLE_KEYS = {
-  owner:'PIHUU33', admin:'ADMIN_2026',
-  management:'MGMT_2026',   player:'KRISHNA_2026' ,  player:'ULTRON_2026', player:'ANKIT_2026', player:'CHINMAY_2026' , player:'SUJAL_2026', player:'DIMOO_2026',  player:'ADITYA_2026',  player:'PLAYER_2026'
+  owner:'PIHUU33', admin:'ADMIN_2026', management:'MGMT_2026',   player:'KRISHNA_2026' ,  player:'ULTRON_2026', player:'ANKIT_2026', player:'CHINMAY_2026' , player:'SUJAL_2026', player:'DIMOO_2026',  player:'ADITYA_2026',  player:'PLAYER_2026'
 };
 
 // Load keys from Firebase
 DB.ref('config/roleKeys').once('value')
+
   .then(s => {
     if(s.exists()) { ROLE_KEYS={...ROLE_KEYS,...s.val()}; setBar('green','🔥 Firebase connected! Keys loaded.'); setTimeout(()=>setBar('hide',''),3000); }
     else { setBar('orange','⚙️ Firebase connected. Role keys nahi hain — neeche set karo.'); }
